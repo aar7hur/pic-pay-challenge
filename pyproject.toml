@@ -1,0 +1,111 @@
+[tool.interrogate]
+ignore-init-method = false
+ignore-init-module = true
+ignore-magic = false
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = true
+ignore-nested-functions = false
+ignore-nested-classes = false
+ignore-setters = false
+fail-under = 90
+exclude = [
+  "setup.py",
+  "docs",
+  "build",
+  ".idea",
+  ".tox",
+  ".venv",
+  "dist",
+  "site",
+  "__init__.py",
+]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+verbose = 2
+quiet = false
+whitelist-regex = []
+
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.eggs-info
+    | \.git          # root of the project
+    | \.tox
+    | \.venv
+    | \.sha1
+    | \.direnv/python_venv
+    | \.direnv/.sha1
+    | .\venv_format_python
+    | python_venv
+    | build
+    | dist
+    | site
+    | site.tox
+    | format_python
+  )/
+)
+'''
+
+[tool.isort]
+skip = [
+  '.bzr',
+  '.direnv',
+  '.eggs',
+  '.git',
+  '.hg',
+  '.mypy_cache',
+  '.nox',
+  '.pants.d',
+  '.svn',
+  '.tox',
+  '.venv',
+  '_build',
+  'buck-out',
+  'build',
+  'dist',
+  'node_modules',
+  'venv',
+  'python_venv',
+]
+
+ensure_newline_before_comments = true
+skip_gitignore = true
+line_length = 120
+multi_line_output = 3
+use_parentheses = true
+include_trailing_comma = true
+force_grid_wrap = 0
+profile = "black"
+src_paths = ["picpaychallenge"]
+color_output = true
+
+[tool.pydocstyle]
+add_ignore = ["D100", "D104", "D101", "D102", "D103", "D104"]
+convention = "google"
+
+[tool.unimport]
+gitignore = true
+remove = true
+include_star_import = true
+ignore_init = true
+exclude = '__init__.py'
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "$version"
+
+[tool.mypy]
+plugins = [ "pydantic.mypy",]
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
